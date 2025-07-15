@@ -1,0 +1,16 @@
+[phases.setup]
+nixPkgs = ['nodejs-18_x', 'npm-8_x']
+
+[phases.install]
+cmds = [
+  'npm ci --production=false',
+  'npm run build'
+]
+
+[phases.build]
+cmds = [
+  'composer install --no-dev --optimize-autoloader',
+  'php artisan config:cache',
+  'php artisan route:cache',
+  'php artisan view:cache'
+]
